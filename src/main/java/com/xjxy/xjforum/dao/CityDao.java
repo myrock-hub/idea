@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface CityDao extends PagingAndSortingRepository<City, Long>, JpaSpecificationExecutor<City> {
+
     @Query("from City t where Name = :Name")
     City findByName(String Name);
 
