@@ -1,6 +1,7 @@
 package com.xjxy.xjforum.dao;
 
 import com.xjxy.xjforum.entity.City;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -19,6 +20,6 @@ public interface CityDao extends PagingAndSortingRepository<City, Long>, JpaSpec
     @Query("from City t where ID = :id")
     List<City> queryCityList(@Param("id") int id);
 
-    @Query("from City ")
-    List<City> findAll();
+    @Query("select c from City c")
+    Page<City> findAlllist(Pageable pageable);
 }

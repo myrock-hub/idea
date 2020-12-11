@@ -6,11 +6,9 @@ import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import com.alibaba.fastjson.JSON;
 
 
@@ -23,7 +21,7 @@ public class CityController {
 
     @ApiOperation(value="按id查询城市信息")
     @ResponseBody
-    @RequestMapping("/queryCityList")
+    @GetMapping("/queryCityList")
     public String queryCityList(@RequestParam("id") int id)  {
         List<City> queryCityList = cityService.queryCityList(id);
         String jsonString = JSON.toJSONString(queryCityList);
@@ -32,9 +30,9 @@ public class CityController {
 
     @ApiOperation(value="查询全部城市信息")
     @ResponseBody
-    @RequestMapping("/findAll")
-    public String findAll()  {
-        List<City> cityList = cityService.findAll();
+    @GetMapping("/findAllByPage")
+    public String findAll(@RequestParam("page") int page,@RequestParam("size") int size)  {
+        Page<City> cityList = cityService.findAlllist(page,size);
         String jsonString = JSON.toJSONString(cityList);
         return  jsonString;
     }
