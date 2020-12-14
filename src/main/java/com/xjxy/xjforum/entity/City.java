@@ -33,7 +33,7 @@ public class City implements Serializable {
     @Column(name = "District")
     @Getter
     @Setter
-    @ApiModelProperty(value = "城市描述", dataType = "String", name = "District", example = "Qandahar")
+    @ApiModelProperty(value = "省", dataType = "String", name = "District", example = "Qandahar")
     private String District;
     @Column(name = "Population")
     @Getter

@@ -1,6 +1,7 @@
 package com.xjxy.xjforum.controller;
 
 import com.xjxy.xjforum.entity.City;
+import com.xjxy.xjforum.entity.CityParam;
 import com.xjxy.xjforum.service.CityServiceImpl;
 import io.swagger.annotations.ApiOperation;
 import org.slf4j.Logger;
@@ -33,6 +34,44 @@ public class CityController {
     @GetMapping("/findAllByPage")
     public String findAll(@RequestParam("page") int page,@RequestParam("size") int size)  {
         Page<City> cityList = cityService.findAlllist(page,size);
+        String jsonString = JSON.toJSONString(cityList);
+        return  jsonString;
+    }
+
+    @ApiOperation(value = "添加城市")
+    @ResponseBody
+    @PostMapping("/saveCity")
+    public String save(@RequestBody City city){
+        String save = cityService.save(city);
+        return save;
+    }
+
+    @ApiOperation(value = "删除城市")
+    @ResponseBody
+    @PostMapping("/deleteCity")
+    public String deleteCity(@RequestParam("name") String name){
+        City city = new City();
+        city.setName(name);
+        String delete = cityService.delete(city);
+        return delete;
+    }
+
+    @ApiOperation(value = "修改城市信息")
+    @ResponseBody
+    @PostMapping("/updateCity")
+    public String updateCity(@RequestBody City city){
+        String update = cityService.updateCity(city);
+        return update;
+    }
+
+    @ApiOperation(value="关键字查询城市信息")
+    @ResponseBody
+    @PostMapping("/findAllByKeyWord")
+    public String findAllByKeyWord(
+            @RequestParam("page") int page,
+            @RequestParam("size") int size,
+            @RequestBody CityParam cityParam)  {
+        Page<City> cityList = cityService.findAllByKeyWord(page, size,cityParam);
         String jsonString = JSON.toJSONString(cityList);
         return  jsonString;
     }

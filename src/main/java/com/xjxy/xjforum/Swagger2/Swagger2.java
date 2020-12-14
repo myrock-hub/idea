@@ -1,5 +1,6 @@
 package com.xjxy.xjforum.Swagger2;
 
+import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +14,7 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @Configuration
-@EnableSwagger2
+@EnableSwaggerBootstrapUI
 public class Swagger2 {
 
     //是否开启swagger，正式环境一般是需要关闭的，可根据springboot的多环境配置进行设置

@@ -15,9 +15,9 @@ spring:
             testOnReturn: true
             testWhileIdle: true
             validationQuery: select 'x'
-        password: 1234
+        password: 19970822
         type: com.alibaba.druid.pool.DruidDataSource
-        url: jdbc:mysql://127.0.0.1:3309/world?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai
+        url: jdbc:mysql://127.0.0.1:3306/world?useUnicode=true&characterEncoding=UTF8&useSSL=false&serverTimezone=Asia/Shanghai
         username: root
     jpa:
         database: mysql
@@ -27,6 +27,7 @@ spring:
             ddl-auto: none  #ddl方式
             naming:
                 implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+            use-new-id-generator-mappings: false
         properties:
             hibernate:
                 dialect: org.hibernate.dialect.MySQL5Dialect
@@ -35,9 +36,11 @@ spring:
         view:
             prefix: /WEB-INF/view/
             suffix: .jsp
+    servlet:
+        multipart:
+            enabled: true
 swagger:
     enabled: true
-
 #分页插件
 
 
